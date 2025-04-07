@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzes - QuizMaster</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="index.html" class="navbar-brand">
+                <div class="navbar-logo">
+                    <div class="logo-cube">
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                    </div>
+                </div>
+                QuizMaster
+            </a>
+
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="quizzes.html" class="nav-link active">Quizzes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item auth-links">
+                    <a href="login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item auth-links">
+                    <a href="register.html" class="btn btn-sm">Sign Up</a>
+                </li>
+                <li class="nav-item user-links" style="display: none;">
+                    <a href="profile.html" class="nav-link">
+                        <span class="username">User</span>
+                    </a>
+                </li>
+                <li class="nav-item user-links" style="display: none;">
+                    <a href="#" class="nav-link" onclick="logoutUser(); return false;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Quizzes Hero Section -->
+    <section class="section quizzes-hero">
+        <div class="parallax-bg"></div>
+        <div class="container">
+            <h1>Explore Quizzes</h1>
+            <p class="lead">Discover quizzes on various topics and test your knowledge</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="section filter-section">
+        <div class="container">
+            <div class="filter-container">
+                <h2>Filter Quizzes</h2>
+                <form class="filter-form">
+                    <div class="filter-row">
+                        <div class="filter-group">
+                            <label for="category" class="filter-label">Category</label>
+                            <select id="category" name="category" class="form-control">
+                                <option value="all">All Categories</option>
+                                <option value="General Knowledge">General Knowledge</option>
+                                <option value="Science">Science</option>
+                                <option value="History">History</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Pop Culture">Pop Culture</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Art">Art</option>
+                                <option value="Geography">Geography</option>
+                                <option value="Language">Language</option>
+                                <option value="Movies">Movies</option>
+                                <option value="Music">Music</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="difficulty" class="filter-label">Difficulty</label>
+                            <select id="difficulty" name="difficulty" class="form-control">
+                                <option value="all">All Difficulties</option>
+                                <option value="Easy">Easy</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <label for="sort" class="filter-label">Sort By</label>
+                            <select id="sort" name="sort" class="form-control">
+                                <option value="newest">Newest</option>
+                                <option value="popular">Most Popular</option>
+                                <option value="difficulty_asc">Difficulty (Easy to Hard)</option>
+                                <option value="difficulty_desc">Difficulty (Hard to Easy)</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group filter-actions">
+                            <button type="submit" class="btn">Apply Filters</button>
+                            <button type="reset" class="btn btn-outline">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Search Box -->
+            <div class="search-container">
+                <input type="text" id="search-input" class="form-control" placeholder="Search quizzes...">
+                <button id="search-btn" class="btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quizzes Grid -->
+    <section class="section quizzes-section">
+        <div class="container">
+            <div class="quizzes-header">
+                <h2>Available Quizzes</h2>
+                <p class="quizzes-count">Showing <span id="quizzes-count">0</span> quizzes</p>
+            </div>
+
+            <div class="grid quizzes-grid">
+                <!-- Quizzes will be loaded via JavaScript -->
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="pagination-btn" id="prev-page" disabled>
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+
+                <div class="pagination-info">
+                    Page <span id="current-page">1</span> of <span id="total-pages">1</span>
+                </div>
+
+                <button class="pagination-btn" id="next-page">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Quiz Banner (only for logged in users) -->
+    <section class="section create-quiz-banner user-links" style="display: none;">
+        <div class="container">
+            <div class="banner-content">
+                <div class="banner-text">
+                    <h2>Create Your Own Quiz</h2>
+                    <p>Share your knowledge and challenge others with your own custom quizzes.</p>
+                </div>
+                <div class="banner-action">
+                    <a href="create-quiz.html" class="btn btn-lg">Create Quiz</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>QuizMaster</h3>
+                    <p>The ultimate platform for quiz enthusiasts.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="quizzes.html">Quizzes</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="quizzes.html?category=General+Knowledge">General Knowledge</a></li>
+                        <li><a href="quizzes.html?category=Science">Science</a></li>
+                        <li><a href="quizzes.html?category=History">History</a></li>
+                        <li><a href="quizzes.html?category=Technology">Technology</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> info@quizmaster.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 QuizMaster. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterForm = document.querySelector('.filter-form');
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+            const quizzesGrid = document.querySelector('.quizzes-grid');
+            const quizzesCount = document.getElementById('quizzes-count');
+            const currentPage = document.getElementById('current-page');
+            const totalPages = document.getElementById('total-pages');
+            const prevPageBtn = document.getElementById('prev-page');
+            const nextPageBtn = document.getElementById('next-page');
+
+            let page = 1;
+            let limit = 9;
+            let totalQuizzes = 0;
+            let maxPages = 1;
+            let currentFilters = new URLSearchParams();
+
+            // Check URL for parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('category')) {
+                document.getElementById('category').value = urlParams.get('category');
+                currentFilters.set('category', urlParams.get('category'));
+            }
+            if (urlParams.has('difficulty')) {
+                document.getElementById('difficulty').value = urlParams.get('difficulty');
+                currentFilters.set('difficulty', urlParams.get('difficulty'));
+            }
+
+            // Load quizzes on page load
+            loadQuizzes();
+
+            // Add event listeners
+            filterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(filterForm);
+
+                // Reset page to 1 when applying new filters
+                page = 1;
+                currentFilters = new URLSearchParams();
+
+                // Build filters
+                for (const [key, value] of formData.entries()) {
+                    if (value && value !== 'all') {
+                        currentFilters.set(key, value);
+                    }
+                }
+
+                // Load quizzes with new filters
+                loadQuizzes();
+            });
+
+            filterForm.addEventListener('reset', () => {
+                setTimeout(() => {
+                    // Reset filters and page
+                    page = 1;
+                    currentFilters = new URLSearchParams();
+
+                    // Load quizzes with reset filters
+                    loadQuizzes();
+                }, 10);
+            });
+
+            searchBtn.addEventListener('click', () => {
+                const searchQuery = searchInput.value.trim();
+
+                if (searchQuery) {
+                    // Reset page to 1 when searching
+                    page = 1;
+
+                    // Set search parameter
+                    currentFilters.set('search', searchQuery);
+
+                    // Load quizzes with search query
+                    loadQuizzes();
+                }
+            });
+
+            // Search on Enter key
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchBtn.click();
+                }
+            });
+
+            // Pagination
+            prevPageBtn.addEventListener('click', () => {
+                if (page > 1) {
+                    page--;
+                    loadQuizzes();
+                }
+            });
+
+            nextPageBtn.addEventListener('click', () => {
+                if (page < maxPages) {
+                    page++;
+                    loadQuizzes();
+                }
+            });
+
+            // Function to load quizzes
+            function loadQuizzes() {
+                // Show loading spinner
+                quizzesGrid.innerHTML = '<div class="spinner"></div>';
+
+                // Prepare parameters
+                currentFilters.set('page', page);
+                currentFilters.set('limit', limit);
+
+                // Fetch quizzes
+                fetch(`/api/quizzes?${currentFilters.toString()}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to load quizzes');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Update quizzes count and pagination
+                        totalQuizzes = data.total;
+                        maxPages = data.pages;
+
+                        quizzesCount.textContent = totalQuizzes;
+                        currentPage.textContent = page;
+                        totalPages.textContent = maxPages;
+
+                        // Update pagination buttons
+                        prevPageBtn.disabled = page <= 1;
+                        nextPageBtn.disabled = page >= maxPages;
+
+                        // Display quizzes
+                        if (data.data.length === 0) {
+                            quizzesGrid.innerHTML = '<p class="no-results">No quizzes found matching your criteria. Try adjusting your filters.</p>';
+                            return;
+                        }
+
+                        quizzesGrid.innerHTML = data.data.map(quiz => `
+              <div class="card quiz-card">
+                <div class="card-body">
+                  <h3 class="card-title">${quiz.title}</h3>
+                  <p class="card-text">${quiz.description}</p>
+                  <div class="quiz-meta">
+                    <span class="quiz-category">${quiz.category}</span>
+                    <span class="quiz-difficulty">${quiz.difficulty}</span>
+                    <span class="quiz-questions">${quiz.questionCount} questions</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-meta">By ${quiz.creator}</span>
+                  <a href="quiz.html?id=${quiz.id}" class="btn btn-sm">Start Quiz</a>
+                </div>
+              </div>
+            `).join('');
+                    })
+                    .catch(error => {
+                        console.error('Error loading quizzes:', error);
+                        quizzesGrid.innerHTML = `<p class="error-message">Error loading quizzes: ${error.message}</p>`;
+                    });
+            }
+        });
+    </script>
+</body>
+
+</html>

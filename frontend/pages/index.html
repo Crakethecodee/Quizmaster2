@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster - Test Your Knowledge</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="index.html" class="navbar-brand">
+                <div class="navbar-logo">
+                    <div class="logo-cube">
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                    </div>
+                </div>
+                QuizMaster
+            </a>
+
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="quizzes.html" class="nav-link">Quizzes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item auth-links">
+                    <a href="login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item auth-links">
+                    <a href="register.html" class="btn btn-sm">Sign Up</a>
+                </li>
+                <li class="nav-item user-links" style="display: none;">
+                    <a href="profile.html" class="nav-link">
+                        <span class="username">User</span>
+                    </a>
+                </li>
+                <li class="nav-item user-links" style="display: none;">
+                    <a href="#" class="nav-link" onclick="logoutUser(); return false;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="parallax-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Test Your Knowledge with QuizMaster</h1>
+                <p class="hero-subtitle">Challenge yourself with quizzes on various topics. Learn, compete, and have
+                    fun!</p>
+                <div class="hero-buttons">
+                    <a href="quizzes.html" class="btn btn-lg">Start a Quiz</a>
+                    <a href="register.html" class="btn btn-outline btn-lg auth-links">Create Account</a>
+                    <a href="create-quiz.html" class="btn btn-outline btn-lg user-links" style="display: none;">Create a
+                        Quiz</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Quizzes Section -->
+    <section class="section">
+        <div class="container">
+            <h2>Featured Quizzes</h2>
+            <p>Explore our most popular quizzes and challenge yourself.</p>
+
+            <div class="grid featured-quizzes">
+                <!-- Quizzes will be loaded via JavaScript -->
+                <div class="spinner"></div>
+            </div>
+
+            <div class="section-footer">
+                <a href="quizzes.html" class="btn">View All Quizzes</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="section categories-section">
+        <div class="container">
+            <h2>Quiz Categories</h2>
+            <p>Explore quizzes by your favorite topics.</p>
+
+            <div class="grid categories-grid">
+                <a href="quizzes.html?category=General+Knowledge" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>General Knowledge</h3>
+                </a>
+
+                <a href="quizzes.html?category=Science" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Science</h3>
+                </a>
+
+                <a href="quizzes.html?category=History" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>History</h3>
+                </a>
+
+                <a href="quizzes.html?category=Technology" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Technology</h3>
+                </a>
+
+                <a href="quizzes.html?category=Pop+Culture" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Pop Culture</h3>
+                </a>
+
+                <a href="quizzes.html?category=Sports" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>Sports</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section how-it-works">
+        <div class="container">
+            <h2>How It Works</h2>
+
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Choose a Quiz</h3>
+                        <p>Browse through our collection of quizzes and select one that interests you.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Answer Questions</h3>
+                        <p>Read each question carefully and select the answer you think is correct.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Get Your Score</h3>
+                        <p>After completing the quiz, get your score and see detailed explanations.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Track Progress</h3>
+                        <p>Create an account to track your progress and compete with others.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-footer">
+                <a href="register.html" class="btn auth-links">Get Started</a>
+                <a href="quizzes.html" class="btn user-links" style="display: none;">Take a Quiz</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>QuizMaster</h3>
+                    <p>The ultimate platform for quiz enthusiasts.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="quizzes.html">Quizzes</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="quizzes.html?category=General+Knowledge">General Knowledge</a></li>
+                        <li><a href="quizzes.html?category=Science">Science</a></li>
+                        <li><a href="quizzes.html?category=History">History</a></li>
+                        <li><a href="quizzes.html?category=Technology">Technology</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> info@quizmaster.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 QuizMaster. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+    <script>
+        // Load featured quizzes
+        document.addEventListener('DOMContentLoaded', () => {
+            const featuredQuizzes = document.querySelector('.featured-quizzes');
+
+            if (featuredQuizzes) {
+                fetch('/api/quizzes/featured')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to load featured quizzes');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.data.length === 0) {
+                            featuredQuizzes.innerHTML = '<p>No featured quizzes available yet.</p>';
+                            return;
+                        }
+
+                        featuredQuizzes.innerHTML = data.data.map(quiz => `
+              <div class="card quiz-card">
+                <div class="card-body">
+                  <h3 class="card-title">${quiz.title}</h3>
+                  <p class="card-text">${quiz.description}</p>
+                  <div class="quiz-meta">
+                    <span class="quiz-category">${quiz.category}</span>
+                    <span class="quiz-difficulty">${quiz.difficulty}</span>
+                    <span class="quiz-questions">${quiz.questionCount} questions</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-meta">By ${quiz.creator}</span>
+                  <a href="quiz.html?id=${quiz.id}" class="btn btn-sm">Start Quiz</a>
+                </div>
+              </div>
+            `).join('');
+                    })
+                    .catch(error => {
+                        console.error('Error loading featured quizzes:', error);
+                        featuredQuizzes.innerHTML = `<p>Error loading featured quizzes: ${error.message}</p>`;
+                    });
+            }
+        });
+    </script>
+</body>
+
+</html>

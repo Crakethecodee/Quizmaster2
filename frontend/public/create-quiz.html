@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Quiz - QuizMaster</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+        /* Additional styles for the quiz form */
+        .form-section {
+            margin-bottom: 2rem;
+            background-color: rgba(123, 104, 238, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 3px solid #7b68ee;
+        }
+
+        .question-card {
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .option-row {
+            display: flex;
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+
+        .option-row input[type="text"] {
+            flex-grow: 1;
+            margin-right: 0.5rem;
+        }
+
+        .remove-question-btn {
+            background-color: #f72585;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+        }
+
+        .add-question-btn {
+            background-color: #4cc9f0;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .add-question-btn i {
+            margin-right: 0.5rem;
+        }
+
+        .category-select,
+        .difficulty-select {
+            background-color: #2a2a2a;
+            color: white;
+            border: 1px solid #444;
+            padding: 0.75rem;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .correct-option {
+            background-color: rgba(76, 201, 240, 0.1);
+            border: 1px solid #4cc9f0;
+        }
+
+        .option-correct-marker {
+            display: flex;
+            align-items: center;
+            color: #7b68ee;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .protected-message {
+            background-color: #f72585;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            display: none;
+            /* Hidden by default, shown via JS if not logged in */
+        }
+    </style>
+</head>
+
+<body class="protected-page">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="index.html" class="navbar-brand">
+                <div class="navbar-logo">
+                    <div class="logo-cube">
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                    </div>
+                </div>
+                QuizMaster
+            </a>
+
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="quizzes.html" class="nav-link">Quizzes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item auth-links">
+                    <a href="login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item auth-links">
+                    <a href="register.html" class="nav-link">Sign Up</a>
+                </li>
+                <li class="nav-item user-links" style="display: none;">
+                    <a href="profile.html" class="nav-link">
+                        <div class="profile-pic-small">
+                            <img src="/images/default-avatar.png" alt="Profile" class="profile-pic">
+                        </div>
+                        <span class="username">User</span>
+                    </a>
+                </li>
+                <li class="nav-item user-links" style="display: none;">
+                    <a href="#" class="nav-link logout-link">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Create Quiz Section -->
+    <section class="section">
+        <div class="container">
+            <div class="protected-message">
+                <p><i class="fas fa-exclamation-triangle"></i> Please log in to create a quiz.</p>
+                <a href="login.html?redirect=create-quiz.html" class="btn btn-sm">Login Now</a>
+            </div>
+
+            <div class="section-header">
+                <h2>Create a New Quiz</h2>
+                <p>Share your knowledge with the world by creating an engaging quiz!</p>
+            </div>
+
+            <form id="create-quiz-form" class="form">
+                <div class="form-error" style="display: none;"></div>
+
+                <div class="form-section">
+                    <h3>Quiz Details</h3>
+                    <div class="form-group">
+                        <label for="quiz-title" class="form-label">Quiz Title</label>
+                        <input type="text" id="quiz-title" name="title" class="form-control" required minlength="5"
+                            maxlength="100">
+                        <small class="form-text">Give your quiz a catchy title (5-100 characters)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quiz-description" class="form-label">Description</label>
+                        <textarea id="quiz-description" name="description" class="form-control" rows="3" required
+                            minlength="20" maxlength="500"></textarea>
+                        <small class="form-text">Describe what your quiz is about (20-500 characters)</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="quiz-category" class="form-label">Category</label>
+                            <select id="quiz-category" name="category" class="category-select" required>
+                                <option value="" disabled selected>Select a category</option>
+                                <option value="General Knowledge">General Knowledge</option>
+                                <option value="Science">Science</option>
+                                <option value="History">History</option>
+                                <option value="Geography">Geography</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Technology">Technology</option>
+                                <option value="Arts">Arts</option>
+                                <option value="Literature">Literature</option>
+                                <option value="Movies">Movies</option>
+                                <option value="Music">Music</option>
+                                <option value="Television">Television</option>
+                                <option value="Video Games">Video Games</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Mythology">Mythology</option>
+                                <option value="Politics">Politics</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="quiz-difficulty" class="form-label">Difficulty</label>
+                            <select id="quiz-difficulty" name="difficulty" class="difficulty-select" required>
+                                <option value="" disabled selected>Select difficulty</option>
+                                <option value="Easy">Easy</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                                <option value="Expert">Expert</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quiz-time-limit" class="form-label">Time Limit (minutes)</label>
+                        <input type="number" id="quiz-time-limit" name="timeLimit" class="form-control" min="1" max="60"
+                            value="10" required>
+                        <small class="form-text">Set a time limit for the quiz (1-60 minutes)</small>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Questions</h3>
+                    <p>Add at least 3 questions with 4 options each.</p>
+
+                    <div id="questions-container">
+                        <!-- Questions will be added here -->
+                    </div>
+
+                    <button type="button" class="add-question-btn" id="add-question-btn">
+                        <i class="fas fa-plus"></i> Add Question
+                    </button>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" id="preview-btn">Preview Quiz</button>
+                    <button type="submit" class="btn btn-primary">Create Quiz</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>QuizMaster</h3>
+                    <p>The ultimate platform for quiz enthusiasts.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="quizzes.html">Quizzes</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="quizzes.html?category=General+Knowledge">General Knowledge</a></li>
+                        <li><a href="quizzes.html?category=Science">Science</a></li>
+                        <li><a href="quizzes.html?category=History">History</a></li>
+                        <li><a href="quizzes.html?category=Technology">Technology</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> info@quizmaster.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 QuizMaster. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/scripts/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is logged in
+            const user = getUserFromSession();
+            if (!user) {
+                // Show protected message
+                document.querySelector('.protected-message').style.display = 'block';
+                document.querySelector('#create-quiz-form').style.display = 'none';
+            }
+
+            const questionsContainer = document.getElementById('questions-container');
+            const addQuestionBtn = document.getElementById('add-question-btn');
+            const form = document.getElementById('create-quiz-form');
+            let questionCount = 0;
+
+            // Function to add a new question
+            function addQuestion() {
+                questionCount++;
+                const questionId = `question-${questionCount}`;
+
+                const questionElement = document.createElement('div');
+                questionElement.className = 'question-card';
+                questionElement.id = questionId;
+
+                questionElement.innerHTML = `
+                    <div class="question-header">
+                        <h4>Question ${questionCount}</h4>
+                    </div>
+                    <button type="button" class="remove-question-btn" data-question="${questionId}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="form-group">
+                        <label for="${questionId}-text" class="form-label">Question Text</label>
+                        <input type="text" id="${questionId}-text" name="questions[${questionCount - 1}][text]" class="form-control" required 
+                               placeholder="Enter your question here">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Options</label>
+                        <div class="options-container">
+                            <div class="option-row">
+                                <input type="text" name="questions[${questionCount - 1}][options][0]" class="form-control" 
+                                       placeholder="Option 1" required>
+                                <input type="radio" name="questions[${questionCount - 1}][correctAnswer]" value="0" required checked>
+                                <span class="option-correct-marker">Correct</span>
+                            </div>
+                            <div class="option-row">
+                                <input type="text" name="questions[${questionCount - 1}][options][1]" class="form-control" 
+                                       placeholder="Option 2" required>
+                                <input type="radio" name="questions[${questionCount - 1}][correctAnswer]" value="1" required>
+                                <span class="option-correct-marker">Correct</span>
+                            </div>
+                            <div class="option-row">
+                                <input type="text" name="questions[${questionCount - 1}][options][2]" class="form-control" 
+                                       placeholder="Option 3" required>
+                                <input type="radio" name="questions[${questionCount - 1}][correctAnswer]" value="2" required>
+                                <span class="option-correct-marker">Correct</span>
+                            </div>
+                            <div class="option-row">
+                                <input type="text" name="questions[${questionCount - 1}][options][3]" class="form-control" 
+                                       placeholder="Option 4" required>
+                                <input type="radio" name="questions[${questionCount - 1}][correctAnswer]" value="3" required>
+                                <span class="option-correct-marker">Correct</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="${questionId}-explanation" class="form-label">Explanation (Optional)</label>
+                        <textarea id="${questionId}-explanation" name="questions[${questionCount - 1}][explanation]" 
+                                  class="form-control" rows="2" placeholder="Explain the correct answer"></textarea>
+                    </div>
+                `;
+
+                questionsContainer.appendChild(questionElement);
+
+                // Add event listener to remove button
+                const removeBtn = questionElement.querySelector('.remove-question-btn');
+                removeBtn.addEventListener('click', function () {
+                    const questionId = this.getAttribute('data-question');
+                    const questionElement = document.getElementById(questionId);
+                    questionElement.remove();
+                    updateQuestionNumbers();
+                });
+
+                return questionElement;
+            }
+
+            // Function to update question numbers after deletion
+            function updateQuestionNumbers() {
+                const questions = questionsContainer.querySelectorAll('.question-card');
+                questions.forEach((question, index) => {
+                    const header = question.querySelector('.question-header h4');
+                    header.textContent = `Question ${index + 1}`;
+
+                    // Update form field names with new indices
+                    const questionText = question.querySelector('input[name*="[text]"]');
+                    const questionExplanation = question.querySelector('textarea[name*="[explanation]"]');
+                    const optionInputs = question.querySelectorAll('input[name*="[options]"]');
+                    const correctAnswer = question.querySelectorAll('input[name*="[correctAnswer]"]');
+
+                    // Update names with new index
+                    questionText.name = `questions[${index}][text]`;
+                    questionExplanation.name = `questions[${index}][explanation]`;
+
+                    optionInputs.forEach((input, optIndex) => {
+                        input.name = `questions[${index}][options][${optIndex}]`;
+                    });
+
+                    correctAnswer.forEach(input => {
+                        input.name = `questions[${index}][correctAnswer]`;
+                    });
+                });
+            }
+
+            // Add first 3 questions by default
+            for (let i = 0; i < 3; i++) {
+                addQuestion();
+            }
+
+            // Add question button event listener
+            addQuestionBtn.addEventListener('click', addQuestion);
+
+            // Form submission
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+
+                // Validate form
+                const questions = questionsContainer.querySelectorAll('.question-card');
+                if (questions.length < 3) {
+                    alert('Please add at least 3 questions to your quiz');
+                    return;
+                }
+
+                // Collect form data
+                const formData = new FormData(form);
+                const quizData = {
+                    title: formData.get('title'),
+                    description: formData.get('description'),
+                    category: formData.get('category'),
+                    difficulty: formData.get('difficulty'),
+                    timeLimit: parseInt(formData.get('timeLimit')),
+                    questions: []
+                };
+
+                // Process questions
+                const questionElements = questionsContainer.querySelectorAll('.question-card');
+                questionElements.forEach((questionEl, questionIndex) => {
+                    const options = [];
+                    // Get all 4 options for this question
+                    for (let i = 0; i < 4; i++) {
+                        options.push(formData.get(`questions[${questionIndex}][options][${i}]`));
+                    }
+
+                    // Create question object
+                    const question = {
+                        text: formData.get(`questions[${questionIndex}][text]`),
+                        options: options,
+                        correctAnswer: parseInt(formData.get(`questions[${questionIndex}][correctAnswer]`)),
+                        explanation: formData.get(`questions[${questionIndex}][explanation]`) || ''
+                    };
+
+                    quizData.questions.push(question);
+                });
+
+                try {
+                    // Submit data to API
+                    const token = getAuthToken();
+                    if (!token) {
+                        throw new Error('You must be logged in to create a quiz');
+                    }
+
+                    const response = await fetch('/api/quizzes', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify(quizData)
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.message || 'Failed to create quiz');
+                    }
+
+                    const result = await response.json();
+
+                    // Redirect to the new quiz page
+                    window.location.href = `quiz.html?id=${result.data.id}`;
+                } catch (error) {
+                    console.error('Error creating quiz:', error);
+
+                    // Show error message
+                    const errorElement = document.querySelector('.form-error');
+                    errorElement.textContent = error.message;
+                    errorElement.style.display = 'block';
+
+                    // Scroll to top to show error
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+
+            // Preview button
+            const previewBtn = document.getElementById('preview-btn');
+            previewBtn.addEventListener('click', function () {
+                alert('Preview functionality will be added in a future update.');
+            });
+
+            // Logout link
+            const logoutLink = document.querySelector('.logout-link');
+            if (logoutLink) {
+                logoutLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    logoutUser();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

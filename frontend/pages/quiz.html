@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - QuizMaster</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../styles/main.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="index.html" class="navbar-brand">
+                <div class="navbar-logo">
+                    <div class="logo-cube">
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                        <div class="logo-face">Q</div>
+                    </div>
+                </div>
+                QuizMaster
+            </a>
+
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="quizzes.html" class="nav-link active">Quizzes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item auth-links">
+                    <a href="login.html" class="nav-link">Login</a>
+                </li>
+                <li class="nav-item auth-links">
+                    <a href="register.html" class="btn btn-sm">Sign Up</a>
+                </li>
+                <li class="nav-item user-links" style="display: none;">
+                    <a href="profile.html" class="nav-link">
+                        <span class="username">User</span>
+                    </a>
+                </li>
+                <li class="nav-item user-links" style="display: none;">
+                    <a href="#" class="nav-link" onclick="logoutUser(); return false;">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Quiz Container -->
+    <section class="section quiz-section">
+        <div class="container">
+            <form id="quiz-form" onsubmit="return false;">
+                <div class="quiz-container">
+                    <!-- Quiz Header -->
+                    <div class="quiz-header">
+                        <h1 class="quiz-title">Loading Quiz...</h1>
+                        <div class="quiz-meta">
+                            <span class="quiz-category"><i class="fas fa-tag"></i> <span
+                                    id="quiz-category">Category</span></span>
+                            <span class="quiz-difficulty"><i class="fas fa-star-half-alt"></i> <span
+                                    id="quiz-difficulty">Difficulty</span></span>
+                            <span class="quiz-questions-count"><i class="fas fa-list"></i> <span
+                                    id="quiz-question-count">0</span> questions</span>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Timer -->
+                    <div class="quiz-timer">
+                        00:00
+                    </div>
+
+                    <!-- Quiz Progress -->
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill quiz-progress-bar" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-text question-counter">
+                            Question <span id="current-question-num">0</span> of <span id="total-questions">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Question Card -->
+                    <div id="question-container" class="question-card">
+                        <!-- Content will be loaded dynamically -->
+                        <div class="spinner"></div>
+                    </div>
+
+                    <!-- Quiz Navigation -->
+                    <div class="quiz-navigation">
+                        <button type="button" class="btn btn-outline btn-prev">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+
+                        <button type="button" class="btn btn-next">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                        <button type="submit" class="btn btn-submit" style="display: none;">
+                            Submit Quiz
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>QuizMaster</h3>
+                    <p>The ultimate platform for quiz enthusiasts.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="quizzes.html">Quizzes</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="quizzes.html?category=General+Knowledge">General Knowledge</a></li>
+                        <li><a href="quizzes.html?category=Science">Science</a></li>
+                        <li><a href="quizzes.html?category=History">History</a></li>
+                        <li><a href="quizzes.html?category=Technology">Technology</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> info@quizmaster.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 QuizMaster. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+</body>
+
+</html>
