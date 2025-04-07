@@ -1,0 +1,322 @@
+[
+    {
+        "title": "General Knowledge Quiz",
+        "description": "Test your knowledge with these general knowledge questions",
+        "category": "General Knowledge",
+        "difficulty": "Medium",
+        "creator": "admin",
+        "questions": [
+            {
+                "text": "Which planet in our solar system has the most moons?",
+                "options": [
+                    "Jupiter",
+                    "Saturn",
+                    "Neptune",
+                    "Uranus"
+                ],
+                "correctAnswer": 1,
+                "explanation": "Saturn has 82 confirmed moons, surpassing Jupiter's 79."
+            },
+            {
+                "text": "Who painted the Mona Lisa?",
+                "options": [
+                    "Pablo Picasso",
+                    "Vincent van Gogh",
+                    "Leonardo da Vinci",
+                    "Michelangelo"
+                ],
+                "correctAnswer": 2,
+                "explanation": "The Mona Lisa was painted by Leonardo da Vinci around 1503-1506."
+            },
+            {
+                "text": "What is the capital of Australia?",
+                "options": [
+                    "Sydney",
+                    "Melbourne",
+                    "Canberra",
+                    "Perth"
+                ],
+                "correctAnswer": 2,
+                "explanation": "Canberra is the capital city of Australia."
+            },
+            {
+                "text": "Which element has the chemical symbol 'Au'?",
+                "options": [
+                    "Silver",
+                    "Gold",
+                    "Aluminum",
+                    "Argon"
+                ],
+                "correctAnswer": 1,
+                "explanation": "The chemical symbol 'Au' stands for Gold, from the Latin word 'aurum'."
+            },
+            {
+                "text": "In which year did World War I begin?",
+                "options": [
+                    "1914",
+                    "1915",
+                    "1916",
+                    "1918"
+                ],
+                "correctAnswer": 0,
+                "explanation": "World War I began in 1914 and ended in 1918."
+            }
+        ]
+    },
+    {
+        "title": "Science Quiz",
+        "description": "Test your scientific knowledge with these challenging questions",
+        "category": "Science",
+        "difficulty": "Hard",
+        "creator": "admin",
+        "questions": [
+            {
+                "text": "What is the speed of light in a vacuum?",
+                "options": [
+                    "299,792 km/s",
+                    "300,000 km/s",
+                    "310,000 km/s",
+                    "280,000 km/s"
+                ],
+                "correctAnswer": 0,
+                "explanation": "The speed of light in a vacuum is approximately 299,792 kilometers per second."
+            },
+            {
+                "text": "Which of these is not a fundamental force in physics?",
+                "options": [
+                    "Electromagnetic force",
+                    "Gravitational force",
+                    "Nuclear force",
+                    "Centrifugal force"
+                ],
+                "correctAnswer": 3,
+                "explanation": "Centrifugal force is a fictitious force, not a fundamental force in physics."
+            },
+            {
+                "text": "What is the chemical formula for sulfuric acid?",
+                "options": [
+                    "H2SO3",
+                    "H2SO4",
+                    "HSO4",
+                    "H2S2O7"
+                ],
+                "correctAnswer": 1,
+                "explanation": "The chemical formula for sulfuric acid is H2SO4."
+            },
+            {
+                "text": "What is the name of the process by which plants make their own food?",
+                "options": [
+                    "Respiration",
+                    "Photosynthesis",
+                    "Fermentation",
+                    "Digestion"
+                ],
+                "correctAnswer": 1,
+                "explanation": "Plants make their own food through photosynthesis, using sunlight, water, and carbon dioxide."
+            },
+            {
+                "text": "What is the smallest unit of life?",
+                "options": [
+                    "Atom",
+                    "Molecule",
+                    "Cell",
+                    "Organelle"
+                ],
+                "correctAnswer": 2,
+                "explanation": "The cell is considered the smallest unit of life that can function independently."
+            }
+        ]
+    },
+    {
+        "title": "History Quiz",
+        "description": "Test your knowledge of historical events and figures",
+        "category": "History",
+        "difficulty": "Medium",
+        "creator": "admin",
+        "questions": [
+            {
+                "text": "Who was the first President of the United States?",
+                "options": [
+                    "Thomas Jefferson",
+                    "John Adams",
+                    "George Washington",
+                    "Abraham Lincoln"
+                ],
+                "correctAnswer": 2,
+                "explanation": "George Washington served as the first President of the United States from 1789 to 1797."
+            },
+            {
+                "text": "In which year did the Berlin Wall fall?",
+                "options": [
+                    "1987",
+                    "1989",
+                    "1991",
+                    "1993"
+                ],
+                "correctAnswer": 1,
+                "explanation": "The Berlin Wall fell on November 9, 1989."
+            },
+            {
+                "text": "Which ancient civilization built the Machu Picchu complex in Peru?",
+                "options": [
+                    "Aztec",
+                    "Maya",
+                    "Inca",
+                    "Olmec"
+                ],
+                "correctAnswer": 2,
+                "explanation": "Machu Picchu was built by the Inca civilization around 1450 AD."
+            },
+            {
+                "text": "Who was the first woman to win a Nobel Prize?",
+                "options": [
+                    "Marie Curie",
+                    "Rosalind Franklin",
+                    "Dorothy Hodgkin",
+                    "Barbara McClintock"
+                ],
+                "correctAnswer": 0,
+                "explanation": "Marie Curie was the first woman to win a Nobel Prize (Physics) in 1903, and later won a second Nobel Prize in Chemistry."
+            },
+            {
+                "text": "Which event marked the beginning of World War II?",
+                "options": [
+                    "The invasion of Poland",
+                    "The bombing of Pearl Harbor",
+                    "The Battle of Britain",
+                    "The invasion of France"
+                ],
+                "correctAnswer": 0,
+                "explanation": "World War II began with Nazi Germany's invasion of Poland on September 1, 1939."
+            }
+        ]
+    },
+    {
+        "title": "Technology Quiz",
+        "description": "Test your knowledge about modern technology and computing",
+        "category": "Technology",
+        "difficulty": "Easy",
+        "creator": "admin",
+        "questions": [
+            {
+                "text": "Who co-founded Apple Computer with Steve Jobs?",
+                "options": [
+                    "Bill Gates",
+                    "Steve Wozniak",
+                    "Paul Allen",
+                    "Mark Zuckerberg"
+                ],
+                "correctAnswer": 1,
+                "explanation": "Steve Wozniak co-founded Apple Computer (now Apple Inc.) with Steve Jobs in 1976."
+            },
+            {
+                "text": "What does 'HTTP' stand for in website addresses?",
+                "options": [
+                    "HyperText Transfer Protocol",
+                    "High Tech Transfer Protocol",
+                    "Hyperlink Text Transfer Protocol",
+                    "Human Technology Transfer Protocol"
+                ],
+                "correctAnswer": 0,
+                "explanation": "HTTP stands for HyperText Transfer Protocol, the foundation of data communication on the World Wide Web."
+            },
+            {
+                "text": "Which programming language was developed by James Gosling at Sun Microsystems?",
+                "options": [
+                    "Python",
+                    "Java",
+                    "C++",
+                    "JavaScript"
+                ],
+                "correctAnswer": 1,
+                "explanation": "Java was developed by James Gosling at Sun Microsystems and released in 1995."
+            },
+            {
+                "text": "What is the name of the virtual assistant developed by Amazon?",
+                "options": [
+                    "Siri",
+                    "Cortana",
+                    "Alexa",
+                    "Google Assistant"
+                ],
+                "correctAnswer": 2,
+                "explanation": "Alexa is the virtual assistant developed by Amazon, first used in the Amazon Echo smart speaker."
+            },
+            {
+                "text": "What year was the first iPhone released?",
+                "options": [
+                    "2005",
+                    "2007",
+                    "2009",
+                    "2010"
+                ],
+                "correctAnswer": 1,
+                "explanation": "The first iPhone was released by Apple in 2007, revolutionizing the smartphone industry."
+            }
+        ]
+    },
+    {
+        "title": "Pop Culture Quiz",
+        "description": "Test your knowledge of movies, music, and pop culture",
+        "category": "Pop Culture",
+        "difficulty": "Easy",
+        "creator": "admin",
+        "questions": [
+            {
+                "text": "Which actor played Iron Man in the Marvel Cinematic Universe?",
+                "options": [
+                    "Chris Evans",
+                    "Chris Hemsworth",
+                    "Mark Ruffalo",
+                    "Robert Downey Jr."
+                ],
+                "correctAnswer": 3,
+                "explanation": "Robert Downey Jr. played Tony Stark/Iron Man in the Marvel Cinematic Universe."
+            },
+            {
+                "text": "Which band performed the song 'Bohemian Rhapsody'?",
+                "options": [
+                    "The Beatles",
+                    "Led Zeppelin",
+                    "Queen",
+                    "Pink Floyd"
+                ],
+                "correctAnswer": 2,
+                "explanation": "Bohemian Rhapsody was performed by the British rock band Queen, released in 1975."
+            },
+            {
+                "text": "Which TV series features characters named Ross, Rachel, Monica, Chandler, Joey, and Phoebe?",
+                "options": [
+                    "How I Met Your Mother",
+                    "The Big Bang Theory",
+                    "Friends",
+                    "Seinfeld"
+                ],
+                "correctAnswer": 2,
+                "explanation": "These characters are from the popular sitcom Friends, which aired from 1994 to 2004."
+            },
+            {
+                "text": "Who is the author of the Harry Potter book series?",
+                "options": [
+                    "J.R.R. Tolkien",
+                    "J.K. Rowling",
+                    "Stephen King",
+                    "George R.R. Martin"
+                ],
+                "correctAnswer": 1,
+                "explanation": "J.K. Rowling is the author of the Harry Potter fantasy series."
+            },
+            {
+                "text": "Which video game franchise features a character named Master Chief?",
+                "options": [
+                    "Call of Duty",
+                    "Doom",
+                    "Halo",
+                    "Gears of War"
+                ],
+                "correctAnswer": 2,
+                "explanation": "Master Chief is the main protagonist of the Halo video game franchise."
+            }
+        ]
+    }
+]
